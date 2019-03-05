@@ -1,0 +1,115 @@
+const mock = {
+    html: {
+        initial: `
+<div class="container" >
+<div class="item" >1</div>
+<div class="item" >2</div>
+<div class="item" >3</div>
+</div>
+        `,
+        controllers: [
+
+        ]
+    },
+    css: {
+        initial: `
+.container{
+border: 2px solid black;
+padding: 10px;
+background-color: lightblue;
+}
+.item{
+border: 1px solid black;
+background-color: darkblue;
+margin: 5px;
+}
+        `,
+        controllers: [
+            {
+                selector: '.container',
+                props: [
+                    {
+                        name: 'display',
+                        value: 'inline-block',
+                        type: 'string'
+                    },
+                    {
+                        name: 'color',
+                        value: '#0062ac',
+                        type: 'color'
+                    },
+                    {
+                        name: 'background-color',
+                        value: '#9962ac',
+                        type: 'color'
+                    },
+                    {
+                        name: 'width',
+                        value: '50',
+                        valueSuffix: '%',
+                        type: 'select',
+                        hideTextValue: true,
+                        options: [
+                            {
+                                name: '80%',
+                                value: '80'
+                            },
+                            {
+                                name: '50%',
+                                value: '50'
+                            },
+                            {
+                                name: '20%',
+                                value: '20'
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                selector: '.item',
+                props: [
+                    {
+                        name: 'display',
+                        value: 'inline-block',
+                        type: 'radio',
+                        hideTextValue: true,
+                        options: [
+                            {
+                                value: 'block'
+                            },
+                            {
+                                value: 'inline-block'
+                            },
+                            {
+                                value: 'inline'
+                            }
+                        ]
+                    },
+                    {
+                        name: 'width',
+                        value: '30',
+                        valueSuffix: '%',
+                        type: 'range',
+                        properties: [
+                            {
+                                name: 'min',
+                                value: '10'
+                            },
+                            {
+                                name: 'max',
+                                value: '100'
+                            },
+                            {
+                                name: 'step',
+                                value: '10'
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+};
+
+export default mock;

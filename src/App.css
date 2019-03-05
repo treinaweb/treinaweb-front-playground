@@ -1,33 +1,53 @@
-.App {
-  text-align: center;
+/* CODE CONTAINER
+*******************/
+.tw-code-container{
+  position: relative;
+  z-index: 90;
+  padding: 15px;
+  color: #f8f8f1;
+  background-color: #272722;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.tw-css-body{
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  padding: 0 15px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.tw-code-container .tw-css-selector{
+  color: #9fd82e;
+}
+
+.tw-code-container .tw-punctuation{
+  color: #f8f8f1;
+}
+
+.tw-code-container .tw-css-property{
+  color: #f92572;
+  margin-right: 5px;
+}
+
+.tw-code-container .tw-css-value{
+  position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.tw-code-container .tw-css-controller-container{
+  display: grid;
+  grid-auto-flow: column;
+  margin: 0 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.tw-code-container .tw-label{
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+/* HTML CONTAINER
+*******************/
+
+.htmlContainer{
+  position: relative;
+  z-index: 10;
+  padding: 15px;
 }
