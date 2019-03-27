@@ -6,7 +6,7 @@ export const STYLE_UPDATE = 'TODO_UPDATE';
 
 export const list = (dispatch) => {
     return async (dispatch) => {
-        const response = await DataStructureService.get('???');
+        const response = await DataStructureService.get();
         dispatch(listResponse(response));
     }
 }
