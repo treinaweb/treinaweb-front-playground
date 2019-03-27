@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/treinaweb-front-playground/precache-manifest.26e88df82cc5944dfe7c841fdc2a9fe9.js"
+  "/treinaweb-front-playground/precache-manifest.8bff58950be563e8944a4264c75366d3.js"
 );
 
 workbox.clientsClaim();
