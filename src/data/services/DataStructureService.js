@@ -1,11 +1,14 @@
 import { ApiService } from './ApiService';
 
+import mock from './mockStructure';
+
 export const DataStructureService = {
-    async get(){
+    async get(url){
         const {playgroundData} = getQueryParams();
         if(playgroundData){
             return ApiService.get(playgroundData);
         }
+        return Promise.resolve(mock);
     }
 };
 

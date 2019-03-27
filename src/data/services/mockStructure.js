@@ -48,22 +48,14 @@ margin: 5px;
                         name: 'width',
                         value: '50',
                         valueSuffix: '%',
-                        type: 'select',
+                        type: 'number',
+                        hideTextValue: true
+                    },
+                    {
+                        name: 'grid-template-columns',
+                        value: '1fr',
                         hideTextValue: true,
-                        options: [
-                            {
-                                name: '80%',
-                                value: '80'
-                            },
-                            {
-                                name: '50%',
-                                value: '50'
-                            },
-                            {
-                                name: '20%',
-                                value: '20'
-                            }
-                        ]
+                        type: 'text',
                     }
                 ]
             },

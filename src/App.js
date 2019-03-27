@@ -18,11 +18,11 @@ class App extends Component {
       css = props.dataStructure.css,
       html = props.dataStructure.html,
       dispatch = props.dispatch;
-
-    if(!css){
+    if(!css || !css.initial){
       return (
-        <div className="App">
-          Loading...
+        <div className="tw-loading">
+          Carregando
+          TreinaWeb Playground
         </div>
       );
     }

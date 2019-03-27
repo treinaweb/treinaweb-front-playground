@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import * as StyleConstants from '../../data/actions/StyleActions';
+import { gzip } from 'zlib';
 
 class StyleContainer extends Component{
     static defaultProps = {
@@ -69,7 +70,7 @@ class StyleContainer extends Component{
                     {
                         controllers.map(controller => {
                             return (
-                                <div onMouseMove={this.onClassMouseEnter} onMouseLeave={this.onClassMouseLeave} className="tw-css-selector-container" data-selector={!controller.avoidHighlight ? controller.selector : ''}  key={controller.selector} >
+                                <div onMouseMove={this.onClassMouseEnter} onMouseLeave={this.onClassMouseLeave} className="tw-css-selector-container" data-selector={controller.avoidHighlight ? '' : controller.selector}  key={controller.selector} >
                                     <div><span className="tw-css-selector">{controller.selector}</span> {'{'}</div>
                                     <div className="tw-css-body" >
                                         {
@@ -110,6 +111,8 @@ function ControllerComponent(props){
         case 'check': return <CheckComponent {...props} />;
         case 'radio': return <RadioComponent {...props} />;
         case 'color': return <ColorComponent {...props} />;
+        case 'text': return <TextComponent {...props} />;
+        case 'number': return <NumberComponent {...props} />;
         default: return '';
     }
 }
@@ -132,8 +135,10 @@ function SelectComponent(props){
 function RangeComponent(props){
     const {prop, controller, onChange} = props;
     const inputProps = {};
-    prop.properties.forEach(prop => inputProps[prop.name] = prop.value);
-    return (<input type="range" value={prop.value} {...inputProps} onInput={({currentTarget}) => {onChange(controller.selector, {name: prop.name, value: currentTarget.value})}} />);
+    if(prop.properties){
+        prop.properties.forEach(prop => inputProps[prop.name] = prop.value);
+    }
+    return (<input type="range" value={prop.value} {...inputProps} onChange={({currentTarget}) => {onChange(controller.selector, {name: prop.name, value: currentTarget.value})}} />);
 }
 
 function CheckComponent(props){
@@ -169,7 +174,26 @@ function RadioComponent(props){
 function ColorComponent(props){
     const {prop, controller, onChange} = props;
 
-    return (<input type="color" value={prop.value} onInput={({currentTarget}) => {onChange(controller.selector, {name: prop.name, value: currentTarget.value})}} />);
+    return (<input type="color" value={prop.value} onChange={({currentTarget}) => {onChange(controller.selector, {name: prop.name, value: currentTarget.value})}} />);
+}
+
+function TextComponent(props){
+    const {prop, controller, onChange} = props,
+        value = prop.value.replace(/[:;]/gi, '');
+
+    return (<input type="text" className="tw-input" value={value} onChange={({currentTarget}) => {onChange(controller.selector, {name: prop.name, value: currentTarget.value})}} />);
+}
+
+function NumberComponent(props){
+    const {prop, controller, onChange} = props,
+        valueSuffix = prop.valueSuffix || '';
+
+    return (
+        <label>
+            <input type="number" className="tw-input" value={prop.value} onChange={({currentTarget}) => {onChange(controller.selector, {name: prop.name, value: currentTarget.value})}} />
+            { valueSuffix }
+        </label>
+    );
 }
 
 export default StyleContainer;
