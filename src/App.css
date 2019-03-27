@@ -3,7 +3,6 @@
 .tw-code-container{
   position: relative;
   z-index: 90;
-  padding: 15px;
   color: #f8f8f1;
   background-color: #272722;
 }
@@ -11,9 +10,13 @@
 .tw-css-body{
   display: grid;
   grid-template-columns: max-content 1fr;
-  padding: 0 15px;
 }
-
+.tw-code-container .tw-css-selector-container{
+  padding: 5px 15px;
+}
+.tw-code-container .tw-css-selector-container:hover{
+  background-color: #373732;
+}
 .tw-code-container .tw-css-selector{
   color: #9fd82e;
 }
@@ -24,6 +27,7 @@
 
 .tw-code-container .tw-css-property{
   color: #f92572;
+  padding-left: 15px;
   margin-right: 5px;
 }
 
@@ -50,4 +54,17 @@
   position: relative;
   z-index: 10;
   padding: 15px;
+}
+
+/* ANIMATIONS
+*******************/
+
+@keyframes tw-anim-element-highlight {
+  from {
+    filter: brightness(0.8);
+  }
+
+  to {
+    filter: brightness(1.4);
+  }
 }

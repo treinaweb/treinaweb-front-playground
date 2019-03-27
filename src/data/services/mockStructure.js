@@ -27,6 +27,7 @@ margin: 5px;
         controllers: [
             {
                 selector: '.container',
+                avoidHighlight: true,
                 props: [
                     {
                         name: 'display',
@@ -85,6 +86,15 @@ margin: 5px;
                                 value: 'inline'
                             }
                         ]
+                    },
+                    {
+                        name: 'text-align',
+                        value: 'initial',
+                        type: 'check',
+                        onValue: 'right',
+                        offValue: 'initial',
+                        checkName: 'right',
+                        hideTextValue: true,
                     },
                     {
                         name: 'width',

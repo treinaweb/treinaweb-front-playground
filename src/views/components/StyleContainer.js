@@ -8,6 +8,10 @@ class StyleContainer extends Component{
         controllers: []
     }
 
+    state = {
+        currentClassEditing: null
+    }
+
     controllersToCssString(){
         const controllers = this.props.controllers;
         let css = '';
@@ -18,11 +22,36 @@ class StyleContainer extends Component{
             })
             css += `}`;
         })
+        css += this.currentElementHighlightStyle();
         return {'__html': css};
+    }
+
+    currentElementHighlightStyle = () => {
+        const { currentClassEditing } = this.state;
+        if(currentClassEditing){
+            const css = `${currentClassEditing}{
+                animation-name: tw-anim-element-highlight;
+                animation-duration: .6s;
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
+                animation-timing-function: ease-in-out;
+            }`;
+            return css;
+        }
+        return '';
     }
 
     onChange = (selector, prop) => {
         this.props.dispatch(StyleConstants.cssUpdate(selector, prop));
+    }
+
+    onClassMouseEnter = (event) => {
+        const currentClassEditing = event.currentTarget.getAttribute('data-selector');
+        this.setState({currentClassEditing});
+    }
+    onClassMouseLeave = (event) => {
+        const currentClassEditing = null;
+        this.setState({currentClassEditing});
     }
 
     render(){
@@ -40,7 +69,7 @@ class StyleContainer extends Component{
                     {
                         controllers.map(controller => {
                             return (
-                                <div key={controller.selector} >
+                                <div onMouseMove={this.onClassMouseEnter} onMouseLeave={this.onClassMouseLeave} className="tw-css-selector-container" data-selector={!controller.avoidHighlight ? controller.selector : ''}  key={controller.selector} >
                                     <div><span className="tw-css-selector">{controller.selector}</span> {'{'}</div>
                                     <div className="tw-css-body" >
                                         {
@@ -78,6 +107,7 @@ function ControllerComponent(props){
     switch(props.prop.type){
         case 'select':  return <SelectComponent {...props} />;
         case 'range': return <RangeComponent {...props} />;
+        case 'check': return <CheckComponent {...props} />;
         case 'radio': return <RadioComponent {...props} />;
         case 'color': return <ColorComponent {...props} />;
         default: return '';
@@ -104,6 +134,19 @@ function RangeComponent(props){
     const inputProps = {};
     prop.properties.forEach(prop => inputProps[prop.name] = prop.value);
     return (<input type="range" value={prop.value} {...inputProps} onInput={({currentTarget}) => {onChange(controller.selector, {name: prop.name, value: currentTarget.value})}} />);
+}
+
+function CheckComponent(props){
+    const {prop, controller, onChange} = props,
+        isChecked = prop.onValue === prop.value;
+    return (
+        <div>
+            <label className="tw-label" >
+                <input checked={isChecked} type="checkbox" value={prop.value} onChange={({currentTarget}) => {onChange(controller.selector, {name: prop.name, value: (isChecked ? prop.offValue : prop.onValue)})}} />
+                {prop.checkName || prop.value}
+            </label>
+        </div>
+    );
 }
 
 function RadioComponent(props){
