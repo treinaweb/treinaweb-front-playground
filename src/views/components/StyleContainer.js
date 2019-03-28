@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import * as StyleConstants from '../../data/actions/StyleActions';
-import { gzip } from 'zlib';
 
 class StyleContainer extends Component{
     static defaultProps = {

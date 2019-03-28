@@ -1,4 +1,4 @@
-const mock = {
+const data = {
     html: {
         initial: `
 <div class="container" >
@@ -114,4 +114,4 @@ margin: 5px;
     },
 };
 
-export default mock;
+export default data;
