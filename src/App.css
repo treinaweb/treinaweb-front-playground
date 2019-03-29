@@ -1,0 +1,100 @@
+/* CODE CONTAINER
+*******************/
+#twPlaygroundData{
+  display: none;
+}
+.tw-loading{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  white-space: pre-line;
+  text-align: center;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tw-code-container{
+  position: relative;
+  z-index: 90;
+  color: #f8f8f1;
+  background-color: #272722;
+}
+
+.tw-css-body{
+  display: grid;
+  grid-template-columns: max-content 1fr;
+}
+.tw-code-container .tw-css-selector-container{
+  padding: 5px 15px;
+}
+.tw-code-container .tw-css-selector-container:hover{
+  background-color: #373732;
+}
+.tw-code-container .tw-css-selector{
+  color: #9fd82e;
+}
+
+.tw-code-container .tw-punctuation{
+  color: #f8f8f1;
+}
+
+.tw-code-container .tw-css-property{
+  color: #f92572;
+  padding-left: 15px;
+  margin-right: 5px;
+}
+
+.tw-code-container .tw-css-value{
+  position: relative;
+  display: flex;
+}
+
+.tw-code-container .tw-css-controller-container{
+  display: grid;
+  grid-auto-flow: column;
+  margin: 0 5px;
+}
+
+.tw-code-container .tw-label{
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.tw-code-container .tw-input{
+  height: 19px;
+  border: none;
+  box-sizing: border-box;
+  background-color: transparent;
+  color: #f8f8f1;
+  font-size: 16px;
+  border-bottom: 1px dashed currentColor;
+  outline: none;
+}
+
+/* HTML CONTAINER
+*******************/
+
+.htmlContainer{
+  position: relative;
+  z-index: 10;
+  padding: 15px;
+}
+
+/* ANIMATIONS
+*******************/
+
+@keyframes tw-anim-element-highlight {
+  from {
+    filter: brightness(0.8);
+  }
+
+  to {
+    filter: brightness(1.4);
+  }
+}
