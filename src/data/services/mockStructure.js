@@ -1,10 +1,15 @@
+import copy from 'copy-text-to-clipboard';
+
 const data = {
     html: {
         initial: `
 <div class="container" >
-<div class="item" >1</div>
-<div class="item" >2</div>
-<div class="item" >3</div>
+    <div class="item" ></div>
+    <div class="item" ></div>
+    <div class="item" ></div>
+    <div class="item" ></div>
+    <div class="item" ></div>
+    <div class="item" ></div>
 </div>
         `,
         controllers: [
@@ -15,34 +20,22 @@ const data = {
         initial: `
 .container{
 border: 2px solid black;
-padding: 10px;
-background-color: lightblue;
+background-color: #0265ad;
 }
 .item{
-border: 1px solid black;
-background-color: darkblue;
-margin: 5px;
+border: 2px solid black;
+background-color: #a2cff0;
+height: 50px;
 }
         `,
         controllers: [
             {
                 selector: '.container',
-                avoidHighlight: true,
                 props: [
                     {
                         name: 'display',
                         value: 'inline-block',
                         type: 'string'
-                    },
-                    {
-                        name: 'color',
-                        value: '#0062ac',
-                        type: 'color'
-                    },
-                    {
-                        name: 'background-color',
-                        value: '#9962ac',
-                        type: 'color'
                     },
                     {
                         name: 'width',
@@ -115,3 +108,7 @@ margin: 5px;
 };
 
 export default data;
+
+window.getMockData = () => {
+    copy(JSON.stringify(data));
+}

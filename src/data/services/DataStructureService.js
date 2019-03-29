@@ -4,13 +4,18 @@ import mock from './mockStructure';
 
 export const DataStructureService = {
     async get(){
-        const {playgroundData} = getQueryParams();
+        const {playgroundData} = getQueryParams(),
+          codeElement = document.querySelector('#twPlaygroundData');
         if(playgroundData){
           if(playgroundData.endsWith('.json')){
             return ApiService.get(playgroundData);
-          }else if(playgroundData.endsWith('.js')){
+          }/*else if(playgroundData.endsWith('.js') && window.location.origin.startsWith('http://localhost:3000')){
             return getObjectFromJSText(playgroundData);
-          }
+          }*/
+        }else if(codeElement){
+          return Promise.resolve(JSON.parse(codeElement.innerText));
+        }else if(window.twPlaygroundData){
+          return Promise.resolve(window.twPlaygroundData);
         }
         return Promise.resolve(mock);
     }
@@ -37,7 +42,7 @@ function getObjectFromJSText(url){
   return fetch(url)
     .then(response => response.text())
     .then(content => {
-      const toAvoid = ['var ', 'eval', 'function','if ', 'if(', 'class ', '=>', 'debugger', 'new ', 'import'],
+      const toAvoid = ['var ', 'eval', 'function','if ', 'if(', 'class ', '=>', 'debugger', 'new ', 'import ', 'import(', 'promise', 'then', 'await ', 'fetch'],
         toHave = ['const data = {', 'export default data;'];
       if(toAvoid.some(item => content.includes(item)) || !toHave.every(item => content.includes(item))){
           return '';

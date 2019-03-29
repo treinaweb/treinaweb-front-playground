@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://treinaweb.github.io/treinaweb-front-playground",
   "dependencies": {
+    "copy-text-to-clipboard": "^2.0.0",
     "react": "^16.8.3",
     "react-color": "^2.17.0",
     "react-dom": "^16.8.3",

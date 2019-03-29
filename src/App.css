@@ -1,5 +1,8 @@
 /* CODE CONTAINER
 *******************/
+#twPlaygroundData{
+  display: none;
+}
 .tw-loading{
   position: fixed;
   top: 0;
