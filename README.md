@@ -19,6 +19,7 @@ https://treinaweb.github.io/treinaweb-front-playground/?playgroundData={json fil
         "controllers": [
             {
                 "selector": "", /* element selectorr */
+                "avoidHighlight": true, /* (optional) avoid element highlight */
                 "props": [ /* CSS properties to control */
                     /* CSS Props Controller */
                 ]
